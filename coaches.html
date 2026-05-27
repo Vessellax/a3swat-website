@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coaches — A3 SWAT Baseball</title>
+  <meta name="description" content="Meet the A3 SWAT coaching staff — elite coaches dedicated to developing the next generation of competitive baseball athletes in Austin, TX." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .coaches-full { padding: var(--pad) 0; }
+
+    .coach-full-card {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 0;
+      background: var(--navy-card);
+      border: 1px solid var(--sky-border);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .coach-full-card:hover {
+      border-color: rgba(77,200,240,0.4);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+
+    .coach-full-photo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coach-full-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .coach-full-card:hover .coach-full-photo img {
+      transform: scale(1.03);
+    }
+
+    .coach-full-body {
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .coach-full-body::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem; bottom: 2.5rem; left: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--sky) 0%, transparent 100%);
+    }
+
+    .coach-full-role {
+      font-family: var(--font-d);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .coach-full-name {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.25rem;
+      line-height: 1.0;
+    }
+
+    .coach-full-bio {
+      color: var(--gray-lt);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .coach-full-bio + .coach-full-bio { margin-top: 0.75rem; }
+
+    .coach-tag {
+      display: inline-block;
+      font-family: var(--font-d);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--sky-dim);
+      color: var(--sky);
+      padding: 0.2rem 0.6rem;
+      margin-top: 1.5rem;
+      margin-right: 0.4rem;
+    }
+
+    @media (max-width: 860px) {
+      .coach-full-card { grid-template-columns: 1fr; }
+      .coach-full-photo { aspect-ratio: 4/3; }
+      .coach-full-photo img { object-position: center 20%; }
+      .coach-full-body { padding: 2rem; }
+      .coach-full-body::before { top: 0; bottom: auto; left: 2rem; right: 2rem; width: auto; height: 3px; background: linear-gradient(90deg, var(--sky) 0%, transparent 100%); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="A3 SWAT Baseball" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="registration.html">Registration</a></li>
+        <li><a href="coaches.html" class="active">Coaches</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><a href="registration.html" class="nav-cta">Join Now</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-drawer" id="navDrawer">
+    <a href="index.html">Home</a>
+    <a href="registration.html">Registration</a>
+    <a href="coaches.html">Coaches</a>
+    <a href="teams.html">Teams</a>
+    <a href="registration.html" style="color: var(--gold);">Join Now →</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="pg-hero clip-bot">
+    <div class="wrap">
+      <div class="pg-hero-content">
+        <div class="label">Leadership &amp; Staff</div>
+        <h1>Our <em>Coaches</em></h1>
+        <p>Three coaches. One mission. Every member of our staff brings elite playing and coaching experience dedicated to developing your athlete at every level.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES FULL BIOS -->
+  <section class="coaches-full clip-top">
+    <div class="wrap">
+
+      <!-- Allik Anchondo -->
+      <div class="coach-full-card rv">
+        <div class="coach-full-photo">
+          <img src="assets/hero-bg.jpeg" alt="Allik Anchondo" />
+        </div>
+        <div class="coach-full-body">
+          <div class="coach-full-role">CEO / Director of Marketing</div>
+          <div class="coach-full-name">Allik Anchondo</div>
+          <p class="coach-full-bio">
+            A University of Texas graduate and former Austin High School letterman, Allik brings both competitive playing experience and a sharp strategic vision to A3 SWAT. His background in marketing drives the program's growth as a premier regional brand in Texas baseball.
+          </p>
+          <p class="coach-full-bio">
+            As co-founder and CEO, Allik is committed to building not just winning teams, but a program that produces disciplined athletes who represent A3 SWAT with pride — on the field and in the classroom.
+          </p>
+          <div>
+            <span class="coach-tag">UT Graduate</span>
+            <span class="coach-tag">Austin High Letterman</span>
+            <span class="coach-tag">Co-Founder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alexander Gonzales -->
+      <div class="coach-full-card rv d1">
+        <div class="coach-full-photo">
+          <img src="assets/photo2.jpg" alt="Alexander Gonzales" style="object-position: center 15%;" />
+        </div>
+        <div class="coach-full-body">
+          <div class="coach-full-role">CEO / Director of Operations</div>
+          <div class="coach-full-name">Alexander Gonzales</div>
+          <p class="coach-full-bio">
+            A Texas State University graduate, Alexander serves as the operational backbone of A3 SWAT. His focus is on instilling character and discipline in every player in the program — values he believes are inseparable from athletic excellence.
+          </p>
+          <p class="coach-full-bio">
+            Alexander oversees the day-to-day structure of A3 SWAT, ensuring that every practice, tournament, and development session runs at the standard the program demands. His approach is simple: hold everyone to the highest bar, every day.
+          </p>
+          <div>
+            <span class="coach-tag">Texas State Graduate</span>
+            <span class="coach-tag">Operations Director</span>
+            <span class="coach-tag">Co-Founder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dustin Jourdan -->
+      <div class="coach-full-card rv d2">
+        <div class="coach-full-photo">
+          <img src="assets/photo3.jpeg" alt="Dustin Jourdan" style="object-position: center 10%;" />
+        </div>
+        <div class="coach-full-body">
+          <div class="coach-full-role">Director of Personal Development</div>
+          <div class="coach-full-name">Dustin Jourdan</div>
+          <p class="coach-full-bio">
+            A former pitcher at Ohio State University, Dustin brings Division I experience and extensive coaching credentials to the A3 SWAT staff. His specialty is the intersection of physical performance and mental toughness — the elements that separate good athletes from great ones.
+          </p>
+          <p class="coach-full-bio">
+            As Director of Personal Development, Dustin works with each player individually to build the focus, resilience, and leadership skills needed to succeed at the high school and collegiate levels. He doesn't just coach pitching — he builds leaders.
+          </p>
+          <div>
+            <span class="coach-tag">Ohio State Pitcher</span>
+            <span class="coach-tag">Mental Performance</span>
+            <span class="coach-tag">D1 Experience</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="wrap">
+      <h2>Train Under Elite Coaches</h2>
+      <p>Apply to A3 SWAT and work directly with our staff toward your goals.</p>
+      <a href="registration.html" class="btn btn-sky">Apply Now <span class="arr">→</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="A3 SWAT Baseball" />
+          <p>Regional Select Baseball Program<br />Austin, Texas</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="coaches.html">Coaches</a></li>
+            <li><a href="teams.html">Teams</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@a3swatbaseball.com">info@a3swatbaseball.com</a></li>
+            <li><a href="#">Austin, Texas</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 A3 Swat Baseball. All rights reserved.</p>
+        <div class="socials">
+          <a href="#" class="social" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.446 18.627 0 12 0S0 5.446 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.971h-1.513c-1.491 0-1.956.932-1.956 1.889v2.255h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

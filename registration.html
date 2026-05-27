@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration — A3 SWAT Baseball</title>
+  <meta name="description" content="Apply to join A3 SWAT Baseball. Complete the registration form to start the selection process." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="A3 SWAT Baseball" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="registration.html" class="active">Registration</a></li>
+        <li><a href="coaches.html">Coaches</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><a href="registration.html" class="nav-cta">Join Now</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-drawer" id="navDrawer">
+    <a href="index.html">Home</a>
+    <a href="registration.html">Registration</a>
+    <a href="coaches.html">Coaches</a>
+    <a href="teams.html">Teams</a>
+    <a href="registration.html" style="color: var(--gold);">Join Now →</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="pg-hero clip-bot">
+    <div class="wrap">
+      <div class="pg-hero-content">
+        <div class="label">Elite Athlete Selection</div>
+        <h1>Join <em>A3 SWAT</em></h1>
+        <p>Dedicated to developing elite skills and character for the next generation of college-level athletes. Our selection process identifies players ready to compete.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps clip-top">
+    <div class="wrap">
+      <div class="rv">
+        <div class="label">The Process</div>
+        <h2 class="sh">How Selection <em>Works</em></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card rv d1">
+          <div class="step-num">01</div>
+          <div class="step-title">Pre-Screening</div>
+          <p class="step-desc">Complete the online registration form and submit a recent performance video. Our staff reviews each submission to verify your player profile and academic standing.</p>
+        </div>
+        <div class="step-card rv d2">
+          <div class="step-num">02</div>
+          <div class="step-title">Physical &amp; Testing</div>
+          <p class="step-desc">Selected candidates attend a mandatory physical examination and skill assessment at our regional facility. We evaluate talent, character, and team compatibility.</p>
+        </div>
+        <div class="step-card rv d3">
+          <div class="step-num">03</div>
+          <div class="step-title">Official Selection</div>
+          <p class="step-desc">Accepted players receive a formal contract and seasonal schedule. Welcome to A3 SWAT — now the real work begins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION FORM -->
+  <section class="reg-section">
+    <div class="wrap">
+      <div class="reg-inner">
+        <div class="rv">
+          <div class="label">Apply Now</div>
+          <h2><em>Start Your</em> Application</h2>
+          <p style="margin-top:1rem;">Fill out the form completely. Incomplete applications will not be reviewed. After submission, our staff will contact you within 48 hours with next steps.</p>
+          <div class="info-row" style="margin-top:1.5rem;">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="var(--sky)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l6 5 6-5"/><rect x="1" y="3" width="14" height="10" rx="1"/></svg>
+            <a href="mailto:info@a3swatbaseball.com">info@a3swatbaseball.com</a>
+          </div>
+        </div>
+
+        <div class="rv d2">
+          <form class="form" id="regForm" >
+
+            <!-- PARENT INFO -->
+            <div class="form-divider">Parent / Guardian Information</div>
+
+            <div class="fg">
+              <label for="r-pname">Parent Name *</label>
+              <input type="text" id="r-pname" name="parentName" placeholder="Full name" required />
+            </div>
+            <div class="form-row">
+              <div class="fg">
+                <label for="r-pphone">Parent Phone *</label>
+                <input type="tel" id="r-pphone" name="parentPhone" placeholder="(512) 000-0000" required />
+              </div>
+              <div class="fg">
+                <label for="r-pemail">Parent Email *</label>
+                <input type="email" id="r-pemail" name="parentEmail" placeholder="parent@email.com" required />
+              </div>
+            </div>
+
+            <!-- PLAYER INFO -->
+            <div class="form-divider" style="margin-top:0.5rem;">Player Information</div>
+
+            <div class="fg">
+              <label for="r-plname">Player Name *</label>
+              <input type="text" id="r-plname" name="playerName" placeholder="Player's full name" required />
+            </div>
+            <div class="form-row">
+              <div class="fg">
+                <label for="r-bday">Player Birthday *</label>
+                <input type="date" id="r-bday" name="playerBirthday" required />
+              </div>
+              <div class="fg">
+                <label for="r-age">Age Group *</label>
+                <select id="r-age" name="ageGroup" required>
+                  <option value="" disabled selected>Select age group</option>
+                  <option>U12</option>
+                  <option>U14</option>
+                  <option>U16</option>
+                  <option>U18</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg">
+              <label for="r-hs">High School *</label>
+              <input type="text" id="r-hs" name="highSchool" placeholder="School name (or N/A if not yet applicable)" required />
+            </div>
+            <div class="form-row">
+              <div class="fg">
+                <label for="r-pos1">Primary Position *</label>
+                <select id="r-pos1" name="position1" required>
+                  <option value="" disabled selected>Select position</option>
+                  <option>Pitcher</option>
+                  <option>Catcher</option>
+                  <option>First Base</option>
+                  <option>Second Base</option>
+                  <option>Third Base</option>
+                  <option>Shortstop</option>
+                  <option>Left Field</option>
+                  <option>Center Field</option>
+                  <option>Right Field</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label for="r-pos2">Secondary Position *</label>
+                <select id="r-pos2" name="position2" required>
+                  <option value="" disabled selected>Select position</option>
+                  <option>Pitcher</option>
+                  <option>Catcher</option>
+                  <option>First Base</option>
+                  <option>Second Base</option>
+                  <option>Third Base</option>
+                  <option>Shortstop</option>
+                  <option>Left Field</option>
+                  <option>Center Field</option>
+                  <option>Right Field</option>
+                  <option>Utility</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg">
+              <label for="r-add">Additional Information</label>
+              <textarea id="r-add" name="additional" placeholder="Tell us about your baseball background, achievements, or any questions you have..."></textarea>
+            </div>
+
+            <div>
+              <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center; padding:1rem 2rem; font-size:1rem;">
+                Submit Application <span class="arr">→</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="form-success" id="regOk">
+            <h3>Application Submitted</h3>
+            <p>We've received your application. Our staff will review it and reach out within 48 hours. Stay sharp.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="A3 SWAT Baseball" />
+          <p>Regional Select Baseball Program<br />Austin, Texas</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="coaches.html">Coaches</a></li>
+            <li><a href="teams.html">Teams</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@a3swatbaseball.com">info@a3swatbaseball.com</a></li>
+            <li><a href="#">Austin, Texas</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 A3 Swat Baseball. All rights reserved.</p>
+        <div class="socials">
+          <a href="#" class="social" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.446 18.627 0 12 0S0 5.446 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.971h-1.513c-1.491 0-1.956.932-1.956 1.889v2.255h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
