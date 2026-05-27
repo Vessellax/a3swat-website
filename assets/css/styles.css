@@ -484,8 +484,8 @@ h1, h2, h3, h4 {
 }
 
 .team-card {
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: var(--sky);
+  border: 1px solid var(--sky);
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
@@ -493,9 +493,9 @@ h1, h2, h3, h4 {
 }
 
 .team-card:hover {
-  border-color: var(--sky);
+  border-color: var(--gold);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(28,43,72,0.10);
+  box-shadow: 0 16px 40px rgba(49,148,205,0.35);
 }
 
 .team-card::after {
@@ -518,8 +518,8 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: rgba(245,197,24,0.15);
-  color: #8A6A00;
+  background: rgba(245,197,24,0.25);
+  color: var(--white);
   padding: 0.25rem 0.65rem;
   margin-bottom: 1.25rem;
 }
@@ -530,12 +530,12 @@ h1, h2, h3, h4 {
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  color: var(--dark);
+  color: var(--white);
 }
 
 .team-sub {
   font-size: 0.875rem;
-  color: var(--body);
+  color: rgba(255,255,255,0.88);
   line-height: 1.7;
   margin-bottom: 1.75rem;
   max-width: 36ch;
@@ -543,7 +543,7 @@ h1, h2, h3, h4 {
 
 .team-bar {
   height: 3px;
-  background: linear-gradient(90deg, var(--sky) 0%, transparent 100%);
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
 }
 
 /* ── Registration (light) ─────────────────────────────────── */
