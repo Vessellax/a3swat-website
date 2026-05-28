@@ -554,28 +554,36 @@ h1, h2, h3, h4 {
   background: #3194CD;
   transition: background 0.2s;
   user-select: none;
+  position: relative;
+  overflow: hidden;
 }
 .team-item summary::-webkit-details-marker { display: none; }
 .team-item summary:hover { background: #2a82b8; }
 .team-item[open] summary { background: #1e6e9e; }
 
-.ti-age {
+.ti-name {
   font-family: var(--font-d);
   font-size: 1.5rem;
   font-weight: 900;
-  color: var(--gold);
-  min-width: 60px;
-  letter-spacing: 0.05em;
-}
-
-.ti-name {
-  font-family: var(--font-d);
-  font-size: 1.1rem;
-  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #fff;
+  color: var(--gold);
   flex: 1;
+}
+
+.ti-wm {
+  font-family: var(--font-d);
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: rgba(245,197,24,0.12);
+  position: absolute;
+  right: 3.5rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.04em;
 }
 
 .ti-arr {
@@ -584,6 +592,8 @@ h1, h2, h3, h4 {
   color: #fff;
   transition: transform 0.3s;
   line-height: 1;
+  position: relative;
+  z-index: 1;
 }
 .team-item[open] .ti-arr { transform: rotate(45deg); color: var(--gold); }
 
