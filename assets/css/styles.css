@@ -572,18 +572,16 @@ h1, h2, h3, h4 {
 }
 
 .ti-wm {
-  font-family: var(--font-d);
-  font-size: 9rem;
-  font-weight: 900;
-  color: rgba(245,197,24,0.18);
   position: absolute;
-  right: -1rem;
+  right: -2rem;
   top: 50%;
-  transform: translateY(-50%) rotate(-12deg);
-  line-height: 1;
+  transform: translateY(-50%) rotate(-10deg);
+  width: 180px;
+  height: auto;
+  opacity: 0.15;
   pointer-events: none;
   user-select: none;
-  letter-spacing: -0.02em;
+  filter: brightness(10);
 }
 
 .ti-arr {
