@@ -26,19 +26,39 @@ const HEADERS = [
 
 function doGet(e) {
   try {
+    const d = e.parameter;
+    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
+
+    // ── Inquiry (homepage contact form) ──────────────────────
+    if (d.type === 'inquiry') {
+      const subject = 'New Inquiry — ' + (d.firstName || '') + ' ' + (d.lastName || '');
+      const body = [
+        'A new inquiry was submitted on a3swatbaseball.com.',
+        '',
+        'Name:      ' + (d.firstName || '—') + ' ' + (d.lastName || '—'),
+        'Email:     ' + (d.email    || '—'),
+        'Phone:     ' + (d.phone    || '—'),
+        'Age Group: ' + (d.ageGroup || '—'),
+        '',
+        'Submitted: ' + timestamp
+      ].join('\n');
+
+      MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
+
+      return ContentService
+        .createTextOutput(JSON.stringify({ result: 'success' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ── Registration (registration form) ─────────────────────
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-    // Write bold gold headers if sheet is empty
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
       sheet.getRange(1, 1, 1, HEADERS.length)
         .setFontWeight('bold')
         .setBackground('#F5C518');
     }
-
-    const d = e.parameter;
-
-    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
 
     sheet.appendRow([
       timestamp,
@@ -54,7 +74,6 @@ function doGet(e) {
       d.additional     || ''
     ]);
 
-    // Send email notification
     const subject = 'New Registration — ' + (d.playerName || 'Unknown Player') + ' (' + (d.ageGroup || '') + ')';
     const body = [
       'A new registration was submitted on a3swatbaseball.com.',

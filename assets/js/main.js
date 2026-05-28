@@ -44,14 +44,23 @@ const io = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-// ── Contact form (homepage inquiry — no Sheets logging needed)
+// ── Contact form (homepage inquiry — email only, no sheet)
 function wireContactForm(formId, successId) {
   const form = document.getElementById(formId);
   const ok   = document.getElementById(successId);
+  const btn  = form ? form.querySelector('button[type="submit"]') : null;
   if (!form || !ok) return;
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    try {
+      const params = new URLSearchParams(new FormData(form));
+      params.set('type', 'inquiry');
+      await fetch(`${SHEETS_URL}?${params.toString()}`, { mode: 'no-cors' });
+    } catch (_) {}
+
     form.style.display = 'none';
     ok.classList.add('show');
   });
