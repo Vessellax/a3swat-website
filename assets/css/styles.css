@@ -842,13 +842,14 @@ h1, h2, h3, h4 {
 @media (max-width: 1080px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
-  .nav-inner { grid-template-columns: 1fr auto; }
+  .nav-socials { display: none; }
+  .nav-inner { grid-template-columns: auto 1fr auto; }
 
   .mission-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .coaches-grid { grid-template-columns: repeat(2, 1fr); }
   .steps-grid { grid-template-columns: 1fr; }
   .reg-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .teams-grid { grid-template-columns: 1fr; }
+  .teams-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: span 2; }
 }
@@ -857,7 +858,11 @@ h1, h2, h3, h4 {
   .coaches-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .hero-btns { flex-direction: column; align-items: center; }
+  .teams-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-brand { grid-column: span 1; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .nav-logo img { height: 52px; }
+  .hero-hl { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .pg-hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
 }
