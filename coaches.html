@@ -114,12 +114,16 @@
 
     @media (max-width: 860px) {
       .coach-full-card { grid-template-columns: 1fr; }
-      .coach-full-photo { aspect-ratio: 4/3; }
-      .coach-full-photo img { object-position: center 20%; }
+      .coach-full-photo { aspect-ratio: 1/1; }
+      .coach-full-photo img { object-position: center 15% !important; }
       .coach-full-body { padding: 2rem; }
       .coach-full-body::before { top: 0; bottom: auto; left: 2rem; right: 2rem; width: auto; height: 3px; background: linear-gradient(90deg, var(--sky) 0%, transparent 100%); }
-      .coach-full-card.d4 .coach-full-photo { aspect-ratio: 3/4; }
-      .coach-full-card.d4 .coach-full-photo img { object-position: center top; }
+      /* Allik — action batting shot, face slightly lower */
+      .coach-full-card:not([class*="d"]) .coach-full-photo img { object-position: center 22% !important; }
+      /* Briar — pitching action, face upper-left of frame */
+      .coach-full-card.d3 .coach-full-photo img { object-position: 42% 28% !important; }
+      /* Oscar — full body shot, face at very top */
+      .coach-full-card.d6 .coach-full-photo img { object-position: center top !important; }
     }
   </style>
 </head>
