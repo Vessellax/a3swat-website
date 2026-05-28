@@ -1,4 +1,4 @@
-// A3 SWAT Baseball — Registration Logger
+// A3 SWAT Baseball — Registration Logger + Email Notifier
 // ─────────────────────────────────────────────────────────────
 // 1. Open your Google Sheet → Extensions → Apps Script
 // 2. Delete everything and paste this entire file
@@ -7,6 +7,8 @@
 //      Execute as: Me
 //      Who has access: Anyone
 // 5. Click Deploy → copy the URL → paste into main.js line 3
+
+const NOTIFY_EMAIL = 'info@a3swatbaseball.com';
 
 const HEADERS = [
   'Timestamp',
@@ -36,8 +38,10 @@ function doGet(e) {
 
     const d = e.parameter;
 
+    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
+
     sheet.appendRow([
-      new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+      timestamp,
       d.parentName     || '',
       d.parentPhone    || '',
       d.parentEmail    || '',
@@ -49,6 +53,32 @@ function doGet(e) {
       d.position2      || '',
       d.additional     || ''
     ]);
+
+    // Send email notification
+    const subject = 'New Registration — ' + (d.playerName || 'Unknown Player') + ' (' + (d.ageGroup || '') + ')';
+    const body = [
+      'A new registration was submitted on a3swatbaseball.com.',
+      '',
+      '── PARENT INFORMATION ──────────────────',
+      'Name:    ' + (d.parentName  || '—'),
+      'Phone:   ' + (d.parentPhone || '—'),
+      'Email:   ' + (d.parentEmail || '—'),
+      '',
+      '── PLAYER INFORMATION ──────────────────',
+      'Name:      ' + (d.playerName     || '—'),
+      'Birthday:  ' + (d.playerBirthday || '—'),
+      'Age Group: ' + (d.ageGroup       || '—'),
+      'School:    ' + (d.highSchool     || '—'),
+      'Position 1:' + (d.position1      || '—'),
+      'Position 2:' + (d.position2      || '—'),
+      '',
+      '── ADDITIONAL INFO ─────────────────────',
+      (d.additional || 'None provided'),
+      '',
+      'Submitted: ' + timestamp
+    ].join('\n');
+
+    MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
 
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
