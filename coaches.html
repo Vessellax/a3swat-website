@@ -122,9 +122,9 @@
       .coach-full-card:not([class*="d"]) .coach-full-photo img { object-position: center 22% !important; }
       /* Briar — pitching action, face upper-left of frame */
       .coach-full-card.d3 .coach-full-photo img { object-position: 42% 28% !important; }
-      /* Kyle — wider landscape to accommodate headshot */
-      .coach-full-card.d4 .coach-full-photo { aspect-ratio: 4/3 !important; }
-      .coach-full-card.d4 .coach-full-photo img { object-position: center top !important; }
+      /* Kyle — fixed height, full hat visible */
+      .coach-full-card.d4 .coach-full-photo { aspect-ratio: unset !important; height: 320px; }
+      .coach-full-card.d4 .coach-full-photo img { object-fit: cover !important; object-position: center top !important; }
       /* Oscar — full body shot, face at very top */
       .coach-full-card.d6 .coach-full-photo img { object-position: center top !important; }
     }
