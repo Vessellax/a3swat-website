@@ -412,8 +412,8 @@ h1, h2, h3, h4 {
 }
 
 .coach-card {
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: #3194CD;
+  border: 1px solid #3194CD;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
@@ -421,7 +421,7 @@ h1, h2, h3, h4 {
 
 .coach-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(28,43,72,0.14);
+  box-shadow: 0 20px 48px rgba(49,148,205,0.35);
 }
 
 .coach-photo {
@@ -443,12 +443,12 @@ h1, h2, h3, h4 {
 .coach-photo-grad {
   position: absolute; bottom: 0; left: 0; right: 0;
   height: 30%;
-  background: linear-gradient(to top, rgba(255,255,255,0.6), transparent);
+  background: linear-gradient(to top, rgba(49,148,205,0.4), transparent);
 }
 
 .coach-info {
   padding: 1.25rem 1.5rem 1.75rem;
-  border-top: 3px solid var(--sky);
+  border-top: 3px solid var(--gold);
 }
 
 .coach-role {
@@ -457,7 +457,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--sky);
+  color: var(--gold);
   margin-bottom: 0.3rem;
 }
 
@@ -468,10 +468,10 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 0.75rem;
-  color: var(--dark);
+  color: var(--white);
 }
 
-.coach-bio { font-size: 0.875rem; color: var(--body); line-height: 1.7; }
+.coach-bio { font-size: 0.875rem; color: rgba(255,255,255,0.88); line-height: 1.7; }
 
 /* ── Teams page (light) ───────────────────────────────────── */
 .teams-section { padding: var(--pad) 0; background: var(--white); }
