@@ -573,17 +573,17 @@ h1, h2, h3, h4 {
 
 .ti-wm {
   font-family: var(--font-d);
-  font-size: 4.5rem;
+  font-size: 9rem;
   font-weight: 900;
-  color: rgba(245,197,24,0.12);
+  color: rgba(245,197,24,0.18);
   position: absolute;
-  right: 3.5rem;
+  right: -1rem;
   top: 50%;
-  transform: translateY(-50%) rotate(-8deg);
+  transform: translateY(-50%) rotate(-12deg);
   line-height: 1;
   pointer-events: none;
   user-select: none;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.02em;
 }
 
 .ti-arr {
