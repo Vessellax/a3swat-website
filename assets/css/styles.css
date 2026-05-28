@@ -576,12 +576,12 @@ h1, h2, h3, h4 {
   right: -2rem;
   top: 50%;
   transform: translateY(-50%) rotate(-10deg);
-  width: 180px;
+  width: 200px;
   height: auto;
-  opacity: 0.15;
+  opacity: 0.28;
   pointer-events: none;
   user-select: none;
-  filter: brightness(10);
+  filter: brightness(100) saturate(0);
 }
 
 .ti-arr {
