@@ -554,8 +554,6 @@ h1, h2, h3, h4 {
   background: #3194CD;
   transition: background 0.2s;
   user-select: none;
-  position: relative;
-  overflow: hidden;
 }
 .team-item summary::-webkit-details-marker { display: none; }
 .team-item summary:hover { background: #2a82b8; }
@@ -571,19 +569,6 @@ h1, h2, h3, h4 {
   flex: 1;
 }
 
-.team-item summary::after {
-  content: '';
-  position: absolute;
-  right: -1rem;
-  top: 50%;
-  transform: translateY(-50%) rotate(-10deg);
-  width: 220px;
-  height: 220px;
-  background: url('../logo.png') center / contain no-repeat;
-  opacity: 0.4;
-  filter: brightness(100) saturate(0);
-  pointer-events: none;
-}
 
 .ti-arr {
   font-size: 1.5rem;
