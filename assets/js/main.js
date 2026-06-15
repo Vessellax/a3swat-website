@@ -1,6 +1,6 @@
 // ── PASTE YOUR APPS SCRIPT DEPLOYMENT URL HERE ──────────────
 // After deploying: Deploy → Manage deployments → copy Web App URL
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzZb4rHA5y9XdZLNuKnfUvQlsL2h4C3gDbQ5DVdtnzk-4tiFn1j3cTrCMJMy6mr01Rm0g/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzewikNXCp2ro5W6BzrpwQwuYYiSENDGW6zzdB9zv-Ci3K3D5V0M-uOsN2UzUhoXXzPxA/exec';
 
 // ── Nav: sticky + hamburger ──────────────────────────────────
 const nav    = document.getElementById('nav');
