@@ -99,6 +99,25 @@ function doGet(e) {
 
     MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
 
+    // ── Confirmation email to parent ───────────────────────
+    if (d.parentEmail) {
+      const confirmSubject = 'A3 SWAT Baseball — Registration Received';
+      const confirmBody = [
+        'Hello ' + (d.parentName || 'there') + ',',
+        '',
+        'Thank you for registering ' + (d.playerName || 'your athlete') + ' with A3 SWAT Baseball.',
+        '',
+        'We\'ve received your submission for the ' + (d.ageGroup || '') + ' division and our staff will review it shortly. You can expect to hear from us within 48 hours with next steps.',
+        '',
+        'We appreciate your interest in A3 SWAT Baseball and look forward to connecting with you.',
+        '',
+        'Best regards,',
+        'A3 SWAT Baseball'
+      ].join('\n');
+
+      MailApp.sendEmail(d.parentEmail, confirmSubject, confirmBody);
+    }
+
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
       .setMimeType(ContentService.MimeType.JSON);
