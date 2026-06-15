@@ -92,7 +92,7 @@ function doGet(e) {
       ].join('\n');
 
       try {
-        MailApp.sendEmail(d.parentEmail, confirmSubject, confirmBody);
+        GmailApp.sendEmail(d.parentEmail, confirmSubject, confirmBody);
         confirmStatus = 'SENT to ' + d.parentEmail;
       } catch (confirmErr) {
         confirmStatus = 'FAILED for ' + d.parentEmail + ' — ' + confirmErr.toString();
