@@ -115,7 +115,14 @@ function doGet(e) {
         'A3 SWAT Baseball'
       ].join('\n');
 
-      MailApp.sendEmail(d.parentEmail, confirmSubject, confirmBody);
+      try {
+        MailApp.sendEmail(d.parentEmail, confirmSubject, confirmBody);
+        Logger.log('Confirmation email sent to: ' + d.parentEmail);
+      } catch (confirmErr) {
+        Logger.log('FAILED to send confirmation email to ' + d.parentEmail + ': ' + confirmErr.toString());
+      }
+    } else {
+      Logger.log('No parentEmail found on submission — skipping confirmation email.');
     }
 
     return ContentService
