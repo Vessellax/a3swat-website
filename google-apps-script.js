@@ -74,6 +74,31 @@ function doGet(e) {
       d.additional     || ''
     ]);
 
+    // ── Confirmation email to parent ───────────────────────
+    let confirmStatus = 'SKIPPED — no parent email on submission';
+    if (d.parentEmail) {
+      const confirmSubject = 'A3 SWAT Baseball — Registration Received';
+      const confirmBody = [
+        'Hello ' + (d.parentName || 'there') + ',',
+        '',
+        'Thank you for registering ' + (d.playerName || 'your athlete') + ' with A3 SWAT Baseball.',
+        '',
+        'We\'ve received your submission for the ' + (d.ageGroup || '') + ' division and our staff will review it shortly. You can expect to hear from us within 48 hours with next steps.',
+        '',
+        'We appreciate your interest in A3 SWAT Baseball and look forward to connecting with you.',
+        '',
+        'Best regards,',
+        'A3 SWAT Baseball'
+      ].join('\n');
+
+      try {
+        MailApp.sendEmail(d.parentEmail, confirmSubject, confirmBody);
+        confirmStatus = 'SENT to ' + d.parentEmail;
+      } catch (confirmErr) {
+        confirmStatus = 'FAILED for ' + d.parentEmail + ' — ' + confirmErr.toString();
+      }
+    }
+
     const subject = 'New Registration — ' + (d.playerName || 'Unknown Player') + ' (' + (d.ageGroup || '') + ')';
     const body = [
       'A new registration was submitted on a3swatbaseball.com.',
@@ -94,36 +119,13 @@ function doGet(e) {
       '── ADDITIONAL INFO ─────────────────────',
       (d.additional || 'None provided'),
       '',
+      '── CONFIRMATION EMAIL ───────────────────',
+      confirmStatus,
+      '',
       'Submitted: ' + timestamp
     ].join('\n');
 
     MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
-
-    // ── Confirmation email to parent ───────────────────────
-    if (d.parentEmail) {
-      const confirmSubject = 'A3 SWAT Baseball — Registration Received';
-      const confirmBody = [
-        'Hello ' + (d.parentName || 'there') + ',',
-        '',
-        'Thank you for registering ' + (d.playerName || 'your athlete') + ' with A3 SWAT Baseball.',
-        '',
-        'We\'ve received your submission for the ' + (d.ageGroup || '') + ' division and our staff will review it shortly. You can expect to hear from us within 48 hours with next steps.',
-        '',
-        'We appreciate your interest in A3 SWAT Baseball and look forward to connecting with you.',
-        '',
-        'Best regards,',
-        'A3 SWAT Baseball'
-      ].join('\n');
-
-      try {
-        MailApp.sendEmail(d.parentEmail, confirmSubject, confirmBody);
-        Logger.log('Confirmation email sent to: ' + d.parentEmail);
-      } catch (confirmErr) {
-        Logger.log('FAILED to send confirmation email to ' + d.parentEmail + ': ' + confirmErr.toString());
-      }
-    } else {
-      Logger.log('No parentEmail found on submission — skipping confirmation email.');
-    }
 
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
