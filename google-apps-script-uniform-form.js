@@ -93,3 +93,57 @@ function createUniformForm() {
   Logger.log('Live form URL:  ' + form.getPublishedUrl());
   Logger.log('Spreadsheet:    ' + ss.getUrl());
 }
+
+// ─────────────────────────────────────────────────────────────
+// Confirmation message + submit notification email
+// ─────────────────────────────────────────────────────────────
+// Run once, after createUniformForm() has already made the form.
+// Sets a branded thank-you message and emails NOTIFY_EMAILS every
+// time someone submits an order. Safe to run more than once — it
+// won't create duplicate triggers.
+
+const UNIFORM_FORM_ID = '1v8Tl7PHmZb6laoUjSi1bAp6lz-Fu_2QT5QFQPO2jHf0';
+const NOTIFY_EMAILS = ['info@a3swatbaseball.com']; // add the second admin's email here too
+
+function setupUniformFormExtras() {
+  const form = FormApp.openById(UNIFORM_FORM_ID);
+
+  form.setConfirmationMessage(
+    'Thanks for submitting your uniform order for A3 SWAT Baseball!\n\n' +
+    'Your player info, jersey number requests, and sizing have all been recorded. ' +
+    'Since every uniform is custom made, please make sure everything above was accurate — ' +
+    'changes can\'t be guaranteed once production begins.\n\n' +
+    'Questions? Reach out to info@a3swatbaseball.com.'
+  );
+
+  const alreadyWired = ScriptApp.getProjectTriggers().some(t =>
+    t.getHandlerFunction() === 'onUniformFormSubmit' && t.getTriggerSourceId() === UNIFORM_FORM_ID
+  );
+
+  if (!alreadyWired) {
+    ScriptApp.newTrigger('onUniformFormSubmit')
+      .forForm(form)
+      .onFormSubmit()
+      .create();
+  }
+
+  Logger.log('Confirmation message set. Trigger ' + (alreadyWired ? 'already existed.' : 'created.'));
+}
+
+function onUniformFormSubmit(e) {
+  const itemResponses = e.response.getItemResponses();
+
+  const answers = {};
+  itemResponses.forEach(ir => { answers[ir.getItem().getTitle()] = ir.getResponse(); });
+
+  const subject = 'New Uniform Order — ' + (answers['Player Name'] || 'Unknown Player') +
+                   ' (' + (answers['Team'] || '') + ')';
+
+  const lines = ['A new uniform order was submitted for A3 SWAT Baseball.', ''];
+  itemResponses.forEach(ir => {
+    lines.push(ir.getItem().getTitle() + ': ' + ir.getResponse());
+  });
+  lines.push('', 'Submitted: ' + new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+
+  MailApp.sendEmail(NOTIFY_EMAILS.join(','), subject, lines.join('\n'));
+}
