@@ -10,6 +10,8 @@
 //    top right) to add the A3 SWAT header image and set the theme
 //    color to gold (#F5C518) — Apps Script can't set theme/header,
 //    that part still needs to be done once in the Forms UI.
+// 7. To add the Shipping Address section to the live form, select
+//    addShippingAddressSection and click Run instead.
 //
 // Safe to re-run: each run creates a brand-new Form + Sheet, it
 // never edits an existing one. Delete the old ones from Drive if
@@ -128,6 +130,51 @@ function setupUniformFormExtras() {
   }
 
   Logger.log('Confirmation message set. Trigger ' + (alreadyWired ? 'already existed.' : 'created.'));
+}
+
+// ─────────────────────────────────────────────────────────────
+// Add a Shipping Address section to the existing form
+// ─────────────────────────────────────────────────────────────
+// Run once. Inserts a new "Shipping Address" page right after
+// Player Information and before Jersey Information, on the LIVE
+// form (does not create a new form). New questions automatically
+// appear as new columns in the linked responses spreadsheet —
+// nothing to do there. Safe to re-run: it skips if the section
+// already exists.
+
+function addShippingAddressSection() {
+  const form = FormApp.openById(UNIFORM_FORM_ID);
+  const items = form.getItems();
+
+  const alreadyAdded = items.some(it =>
+    it.getType() === FormApp.ItemType.PAGE_BREAK && it.getTitle() === 'Shipping Address'
+  );
+  if (alreadyAdded) {
+    Logger.log('Shipping Address section already exists — skipping.');
+    return;
+  }
+
+  const insertIndex = items.findIndex(it =>
+    it.getType() === FormApp.ItemType.PAGE_BREAK && it.getTitle() === 'Jersey Information'
+  );
+  if (insertIndex === -1) {
+    throw new Error('Could not find "Jersey Information" page break to insert before.');
+  }
+
+  const pageBreak = form.addPageBreakItem().setTitle('Shipping Address');
+  const street = form.addTextItem().setTitle('Street Address').setRequired(true);
+  const aptUnit = form.addTextItem().setTitle('Apt / Unit (optional)').setRequired(false);
+  const city = form.addTextItem().setTitle('City').setRequired(true);
+  const state = form.addTextItem().setTitle('State').setRequired(true);
+  const zip = form.addTextItem().setTitle('ZIP Code').setRequired(true);
+
+  let idx = insertIndex;
+  [pageBreak, street, aptUnit, city, state, zip].forEach(item => {
+    form.moveItem(item, idx);
+    idx++;
+  });
+
+  Logger.log('Shipping Address section added.');
 }
 
 function onUniformFormSubmit(e) {
