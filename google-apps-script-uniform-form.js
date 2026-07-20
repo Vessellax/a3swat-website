@@ -144,37 +144,49 @@ function setupUniformFormExtras() {
 
 function addShippingAddressSection() {
   const form = FormApp.openById(UNIFORM_FORM_ID);
-  const items = form.getItems();
+  let items = form.getItems();
 
-  const alreadyAdded = items.some(it =>
+  let startIdx = items.findIndex(it =>
     it.getType() === FormApp.ItemType.PAGE_BREAK && it.getTitle() === 'Shipping Address'
   );
-  if (alreadyAdded) {
-    Logger.log('Shipping Address section already exists — skipping.');
-    return;
+
+  if (startIdx === -1) {
+    // Doesn't exist yet — create it (gets appended at the end for now).
+    form.addPageBreakItem().setTitle('Shipping Address');
+    form.addTextItem().setTitle('Street Address').setRequired(true);
+    form.addTextItem().setTitle('Apt / Unit (optional)').setRequired(false);
+    form.addTextItem().setTitle('City').setRequired(true);
+    form.addTextItem().setTitle('State').setRequired(true);
+    form.addTextItem().setTitle('ZIP Code').setRequired(true);
+    items = form.getItems();
+    startIdx = items.findIndex(it =>
+      it.getType() === FormApp.ItemType.PAGE_BREAK && it.getTitle() === 'Shipping Address'
+    );
   }
 
-  const insertIndex = items.findIndex(it =>
+  // The 6 shipping items, wherever they currently sit (handles a
+  // previous partial run that created them but left them misplaced).
+  const shippingItems = items.slice(startIdx, startIdx + 6);
+
+  const jerseyIdx = form.getItems().findIndex(it =>
     it.getType() === FormApp.ItemType.PAGE_BREAK && it.getTitle() === 'Jersey Information'
   );
-  if (insertIndex === -1) {
+  if (jerseyIdx === -1) {
     throw new Error('Could not find "Jersey Information" page break to insert before.');
   }
 
-  const pageBreak = form.addPageBreakItem().setTitle('Shipping Address');
-  const street = form.addTextItem().setTitle('Street Address').setRequired(true);
-  const aptUnit = form.addTextItem().setTitle('Apt / Unit (optional)').setRequired(false);
-  const city = form.addTextItem().setTitle('City').setRequired(true);
-  const state = form.addTextItem().setTitle('State').setRequired(true);
-  const zip = form.addTextItem().setTitle('ZIP Code').setRequired(true);
+  if (jerseyIdx === startIdx + 6) {
+    Logger.log('Shipping Address section already in place — nothing to do.');
+    return;
+  }
 
-  let idx = insertIndex;
-  [pageBreak, street, aptUnit, city, state, zip].forEach(item => {
-    form.moveItem(item, idx);
-    idx++;
+  let target = jerseyIdx < startIdx ? jerseyIdx : jerseyIdx - 6;
+  shippingItems.forEach(item => {
+    form.moveItem(item.getIndex(), target);
+    target++;
   });
 
-  Logger.log('Shipping Address section added.');
+  Logger.log('Shipping Address section moved into place.');
 }
 
 function onUniformFormSubmit(e) {
