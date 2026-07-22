@@ -74,7 +74,13 @@ function createUniformForm() {
 
   form.addListItem()
     .setTitle('Hat Size')
-    .setChoiceValues(['S/M', 'M/L', 'L/XL'])
+    .setHelpText('R-Flex Fit')
+    .setChoiceValues([
+      'Y (6 3/8 - 6 5/8)',
+      'XS-SM (6 5/8 - 7)',
+      'SM-MD (7 - 7 1/4)',
+      'LG-XL (7 3/8 - 7 5/8)'
+    ])
     .setRequired(true);
 
   // ── Final Confirmation ──────────────────────────────────────
@@ -187,6 +193,35 @@ function addShippingAddressSection() {
   });
 
   Logger.log('Shipping Address section moved into place.');
+}
+
+// ─────────────────────────────────────────────────────────────
+// Update Hat Size choices on the existing form
+// ─────────────────────────────────────────────────────────────
+// Run once. Replaces the Hat Size choices with the R-Flex fit sizes
+// on the LIVE form. Safe to re-run.
+
+function updateHatSizeChoices() {
+  const form = FormApp.openById(UNIFORM_FORM_ID);
+  const items = form.getItems();
+
+  const hatItem = items.find(it =>
+    it.getType() === FormApp.ItemType.LIST && it.getTitle() === 'Hat Size'
+  );
+  if (!hatItem) {
+    throw new Error('Could not find "Hat Size" question.');
+  }
+
+  hatItem.asListItem()
+    .setHelpText('R-Flex Fit')
+    .setChoiceValues([
+      'Y (6 3/8 - 6 5/8)',
+      'XS-SM (6 5/8 - 7)',
+      'SM-MD (7 - 7 1/4)',
+      'LG-XL (7 3/8 - 7 5/8)'
+    ]);
+
+  Logger.log('Hat Size choices updated.');
 }
 
 function onUniformFormSubmit(e) {
