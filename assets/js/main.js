@@ -102,3 +102,34 @@ function wireRegForm(formId, successId) {
 }
 
 wireRegForm('regForm', 'regOk');
+
+// ── Donation form → Google Sheets (type=donation) ────────────
+function wireDonationForm(formId, successId) {
+  const form = document.getElementById(formId);
+  const ok   = document.getElementById(successId);
+  const btn  = form ? form.querySelector('button[type="submit"]') : null;
+  if (!form || !ok) return;
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    if (!SHEETS_URL || SHEETS_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+      form.style.display = 'none';
+      ok.classList.add('show');
+      return;
+    }
+
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+
+    try {
+      const params = new URLSearchParams(new FormData(form));
+      params.set('type', 'donation');
+      await fetch(`${SHEETS_URL}?${params.toString()}`, { mode: 'no-cors' });
+    } catch (_) {}
+
+    form.style.display = 'none';
+    ok.classList.add('show');
+  });
+}
+
+wireDonationForm('donateForm', 'donateOk');

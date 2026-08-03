@@ -24,6 +24,18 @@ const HEADERS = [
   'Additional Info'
 ];
 
+const DONATION_HEADERS = [
+  'Timestamp',
+  'Donor Name',
+  'Business Name',
+  'Phone',
+  'Email',
+  'Amount',
+  'Payment Method',
+  'Shirt Size',
+  'Recognition'
+];
+
 function doGet(e) {
   try {
     const d = e.parameter;
@@ -44,6 +56,59 @@ function doGet(e) {
       ].join('\n');
 
       MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
+
+      return ContentService
+        .createTextOutput(JSON.stringify({ result: 'success' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ── Donation (donate.html confirmation form) ──────────────
+    if (d.type === 'donation') {
+      const ss = SpreadsheetApp.getActiveSpreadsheet();
+      let donationSheet = ss.getSheetByName('Donations');
+      if (!donationSheet) {
+        donationSheet = ss.insertSheet('Donations');
+      }
+
+      if (donationSheet.getLastRow() === 0) {
+        donationSheet.appendRow(DONATION_HEADERS);
+        donationSheet.getRange(1, 1, 1, DONATION_HEADERS.length)
+          .setFontWeight('bold')
+          .setBackground('#F5C518');
+      }
+
+      donationSheet.appendRow([
+        timestamp,
+        d.donorName    || '',
+        d.businessName || '',
+        d.donorPhone   || '',
+        d.donorEmail   || '',
+        d.amount       || '',
+        d.paymentMethod|| '',
+        d.shirtSize    || '',
+        d.recognition  || ''
+      ]);
+
+      const donationSubject = 'New Donation — ' + (d.donorName || 'Unknown Donor') + ' (' + (d.amount || '') + ')';
+      const donationBody = [
+        'A new donation was confirmed on a3swatbaseball.com.',
+        '',
+        '── DONOR INFORMATION ───────────────────',
+        'Name:      ' + (d.donorName    || '—'),
+        'Business:  ' + (d.businessName || '—'),
+        'Phone:     ' + (d.donorPhone   || '—'),
+        'Email:     ' + (d.donorEmail   || '—'),
+        '',
+        '── DONATION DETAILS ────────────────────',
+        'Amount:         ' + (d.amount        || '—'),
+        'Payment Method: ' + (d.paymentMethod || '—'),
+        'Shirt Size:     ' + (d.shirtSize     || 'N/A'),
+        'Recognition:    ' + (d.recognition   || '—'),
+        '',
+        'Submitted: ' + timestamp
+      ].join('\n');
+
+      MailApp.sendEmail(NOTIFY_EMAIL, donationSubject, donationBody);
 
       return ContentService
         .createTextOutput(JSON.stringify({ result: 'success' }))

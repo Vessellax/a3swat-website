@@ -924,6 +924,117 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
 }
 
+/* ── Donate page ──────────────────────────────────────────── */
+.goes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.pay-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.pay-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 2.25rem 2rem;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.pay-card:hover { border-color: var(--sky); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(28,43,72,0.10); }
+
+.pay-icon {
+  width: 52px; height: 52px;
+  margin: 0 auto 1.25rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--sky-dim);
+  border-radius: 50%;
+  color: var(--sky);
+}
+
+.pay-title {
+  font-family: var(--font-d);
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.pay-desc { font-size: 0.875rem; color: var(--body); line-height: 1.6; margin-bottom: 1.5rem; }
+.pay-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.85rem; }
+
+.tier-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1.75rem 0 0;
+}
+
+.tier-chip {
+  font-family: var(--font-d);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--border);
+  color: var(--body);
+  background: var(--off-white);
+}
+
+.prize-section { padding: var(--pad) 0; background: var(--navy); }
+.prize-section .label { color: var(--sky); }
+.prize-section .sh { color: var(--white); }
+.prize-section .sh em { color: var(--gold); }
+.prize-section .coaches-hd p { color: rgba(255,255,255,0.65); max-width: 60ch; margin-inline: auto; }
+
+.prize-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.prize-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+
+.prize-photo { aspect-ratio: 1/1; background: #F4F7FB; }
+.prize-photo img { width: 100%; height: 100%; object-fit: contain; }
+
+.prize-info { padding: 1.5rem 1.75rem 2rem; text-align: center; }
+.prize-name {
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.35rem;
+}
+.prize-desc { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+
+.stat-banner { background: var(--sky); padding: 3.5rem 0; text-align: center; }
+.stat-banner .stat-num { font-family: var(--font-hero); font-size: clamp(3rem, 7vw, 5rem); color: var(--white); line-height: 1; }
+.stat-banner .stat-label {
+  font-family: var(--font-d);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+.stat-banner p { color: rgba(255,255,255,0.85); max-width: 52ch; margin: 1rem auto 0; font-size: 0.95rem; }
+
 /* ── Scroll reveal ────────────────────────────────────────── */
 .rv {
   opacity: 0;
@@ -951,6 +1062,9 @@ h1, h2, h3, h4 {
   .teams-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: span 2; }
+
+  .goes-grid { grid-template-columns: 1fr 1fr; }
+  .pay-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
@@ -964,4 +1078,6 @@ h1, h2, h3, h4 {
   .nav-logo img { height: 52px; }
   .hero-hl { font-size: clamp(2.4rem, 11vw, 4rem); }
   .pg-hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
+  .goes-grid { grid-template-columns: 1fr; }
+  .prize-grid { grid-template-columns: 1fr; }
 }
