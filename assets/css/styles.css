@@ -1019,12 +1019,26 @@ h1, h2, h3, h4 {
 }
 .prize-photo-group img { height: 100%; width: auto; max-width: 32%; object-fit: contain; }
 
-.prize-icon-wrap {
+.prize-brand-block {
   aspect-ratio: 16/11;
   background: rgba(255,255,255,0.04);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.6rem;
+  padding: 1.5rem;
+}
+
+.prize-brand-item {
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2.3vw, 1.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.15;
 }
 
 .prize-info { padding: 1.5rem 1.75rem 2rem; text-align: center; }
@@ -1037,17 +1051,6 @@ h1, h2, h3, h4 {
   margin-bottom: 0.35rem;
 }
 .prize-desc { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
-
-.prize-brands {
-  margin-top: 0.9rem;
-  font-family: var(--font-d);
-  font-weight: 800;
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--gold);
-  line-height: 1.6;
-}
 
 .stat-banner { background: var(--sky); padding: 3.5rem 0; text-align: center; }
 .stat-banner .stat-num { font-family: var(--font-hero); font-size: clamp(3rem, 7vw, 5rem); color: var(--white); line-height: 1; }
