@@ -970,25 +970,6 @@ h1, h2, h3, h4 {
 .pay-desc { font-size: 0.875rem; color: var(--body); line-height: 1.6; margin-bottom: 1.5rem; }
 .pay-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.85rem; }
 
-.tier-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  justify-content: center;
-  margin: 1.75rem 0 0;
-}
-
-.tier-chip {
-  font-family: var(--font-d);
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
-  padding: 0.5rem 1.1rem;
-  border: 1px solid var(--border);
-  color: var(--body);
-  background: var(--off-white);
-}
-
 .prize-section { padding: var(--pad) 0; background: var(--navy); }
 .prize-section .label { color: var(--sky); }
 .prize-section .sh { color: var(--white); }
