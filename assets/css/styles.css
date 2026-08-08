@@ -582,7 +582,7 @@ h1, h2, h3, h4 {
 .team-item[open] .ti-arr { transform: rotate(45deg); color: var(--gold); }
 
 .ti-body {
-  padding: 1.5rem 1.5rem 2rem calc(60px + 1.5rem + 1.5rem);
+  padding: 1.75rem;
   background: #eaf4fa;
   border-top: 3px solid var(--gold);
 }
@@ -594,8 +594,8 @@ h1, h2, h3, h4 {
 }
 
 .roster-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 0.5rem;
 }
@@ -604,6 +604,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   gap: 0.9rem;
+  flex: 1 1 180px;
   background: var(--white);
   border: 1px solid var(--border);
   border-left: 4px solid var(--sky);
@@ -1118,7 +1119,7 @@ h1, h2, h3, h4 {
 
   .goes-grid { grid-template-columns: 1fr 1fr; }
   .pay-grid { grid-template-columns: 1fr; }
-  .roster-grid { grid-template-columns: 1fr 1fr; }
+  .roster-item { flex-basis: 40%; }
 }
 
 @media (max-width: 600px) {
@@ -1134,5 +1135,6 @@ h1, h2, h3, h4 {
   .pg-hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
   .goes-grid { grid-template-columns: 1fr; }
   .prize-grid { grid-template-columns: 1fr; }
-  .roster-grid { grid-template-columns: 1fr; }
+  .roster-item { flex-basis: 100%; }
+  .ti-body { padding: 1.25rem; }
 }
