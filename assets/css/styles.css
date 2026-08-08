@@ -595,27 +595,45 @@ h1, h2, h3, h4 {
 
 .roster-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.6rem 1.5rem;
-  margin-bottom: 1.75rem;
-  max-width: 640px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .roster-item {
   display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
-  font-size: 0.9rem;
+  align-items: center;
+  gap: 0.9rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--sky);
+  padding: 0.7rem 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.roster-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(28,43,72,0.14);
+  border-left-color: var(--gold);
 }
 
 .roster-num {
   font-family: var(--font-d);
-  font-weight: 800;
+  font-weight: 900;
+  font-size: 1.6rem;
+  line-height: 1;
   color: var(--sky);
-  min-width: 2.2ch;
+  min-width: 2ch;
 }
 
-.roster-player { color: var(--dark); font-weight: 600; }
+.roster-player {
+  font-family: var(--font-d);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--dark);
+  line-height: 1.2;
+}
 
 .teams-grid {
   display: grid;
