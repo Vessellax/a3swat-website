@@ -593,6 +593,30 @@ h1, h2, h3, h4 {
   max-width: 55ch;
 }
 
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem 1.5rem;
+  margin-bottom: 1.75rem;
+  max-width: 640px;
+}
+
+.roster-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+}
+
+.roster-num {
+  font-family: var(--font-d);
+  font-weight: 800;
+  color: var(--sky);
+  min-width: 2.2ch;
+}
+
+.roster-player { color: var(--dark); font-weight: 600; }
+
 .teams-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1076,6 +1100,7 @@ h1, h2, h3, h4 {
 
   .goes-grid { grid-template-columns: 1fr 1fr; }
   .pay-grid { grid-template-columns: 1fr; }
+  .roster-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 600px) {
@@ -1091,4 +1116,5 @@ h1, h2, h3, h4 {
   .pg-hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
   .goes-grid { grid-template-columns: 1fr; }
   .prize-grid { grid-template-columns: 1fr; }
+  .roster-grid { grid-template-columns: 1fr; }
 }
