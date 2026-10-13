@@ -1,12 +1,21 @@
 // A3 SWAT Baseball — Registration Logger + Email Notifier
 // ─────────────────────────────────────────────────────────────
-// 1. Open your Google Sheet → Extensions → Apps Script
+// 1. Open the Google Sheet → Extensions → Apps Script
 // 2. Delete everything and paste this entire file
 // 3. Click Save (floppy disk)
-// 4. Deploy → New deployment → Web App
+// 4. If this is a brand-new project: Deploy → New deployment → Web App
 //      Execute as: Me
 //      Who has access: Anyone
-// 5. Click Deploy → copy the URL → paste into main.js line 3
+//    Then copy the URL → paste into main.js line 3.
+//    If a deployment already exists (this is the live A3 SWAT script),
+//    you do NOT need a new deployment — just Deploy → Manage deployments →
+//    edit the existing deployment → set version to "New version" → Deploy,
+//    so the live /exec URL starts running this updated code.
+//
+// Spring 2026 update: registrations now write to a separate
+// "Spring 2026 Registrations" tab (auto-created on first submission),
+// keeping past-season registrations untouched. Donations/inquiries are
+// unaffected — same URL, same spreadsheet, no site changes needed.
 
 const NOTIFY_EMAIL = 'info@a3swatbaseball.com';
 
@@ -116,7 +125,13 @@ function doGet(e) {
     }
 
     // ── Registration (registration form) ─────────────────────
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    // Spring 2026 registrations go to their own tab, separate from past seasons —
+    // same pattern as the Donations tab below.
+    const regSs = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = regSs.getSheetByName('Spring 2026 Registrations');
+    if (!sheet) {
+      sheet = regSs.insertSheet('Spring 2026 Registrations');
+    }
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
