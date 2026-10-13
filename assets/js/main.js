@@ -6,7 +6,7 @@ const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzewikNXCp2ro5W6Bzrp
 // ── Spring 2026 registration — separate dedicated sheet ─────
 // Deploy google-apps-script-registration-spring.js on its own new
 // Google Sheet, then paste that deployment's Web App URL here.
-const REGISTRATION_SHEETS_URL = 'YOUR_SPRING_REGISTRATION_APPS_SCRIPT_URL_HERE';
+const REGISTRATION_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbx4Cye9CdKU8M7AF9VIH6W3szOx_DnBR-Y4bplWEVbFpFBLxTWiZfUijKABOnNOuQD4vw/exec';
 
 // ── Nav: sticky + hamburger ──────────────────────────────────
 const nav    = document.getElementById('nav');
