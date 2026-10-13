@@ -1,6 +1,12 @@
 // ── PASTE YOUR APPS SCRIPT DEPLOYMENT URL HERE ──────────────
 // After deploying: Deploy → Manage deployments → copy Web App URL
+// Handles the homepage inquiry form and the donation form.
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzewikNXCp2ro5W6BzrpwQwuYYiSENDGW6zzdB9zv-Ci3K3D5V0M-uOsN2UzUhoXXzPxA/exec';
+
+// ── Spring 2026 registration — separate dedicated sheet ─────
+// Deploy google-apps-script-registration-spring.js on its own new
+// Google Sheet, then paste that deployment's Web App URL here.
+const REGISTRATION_SHEETS_URL = 'YOUR_SPRING_REGISTRATION_APPS_SCRIPT_URL_HERE';
 
 // ── Nav: sticky + hamburger ──────────────────────────────────
 const nav    = document.getElementById('nav');
@@ -79,7 +85,7 @@ function wireRegForm(formId, successId) {
     e.preventDefault();
 
     // If URL hasn't been set yet, just show success (dev mode)
-    if (!SHEETS_URL || SHEETS_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    if (!REGISTRATION_SHEETS_URL || REGISTRATION_SHEETS_URL === 'YOUR_SPRING_REGISTRATION_APPS_SCRIPT_URL_HERE') {
       form.style.display = 'none';
       ok.classList.add('show');
       return;
@@ -91,7 +97,7 @@ function wireRegForm(formId, successId) {
     try {
       // GET avoids CORS preflight — doGet on Apps Script side handles it
       const params = new URLSearchParams(new FormData(form));
-      await fetch(`${SHEETS_URL}?${params.toString()}`, { mode: 'no-cors' });
+      await fetch(`${REGISTRATION_SHEETS_URL}?${params.toString()}`, { mode: 'no-cors' });
     } catch (_) {
       // no-cors fetch may throw on response read — expected
     }

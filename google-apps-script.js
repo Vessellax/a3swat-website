@@ -1,21 +1,18 @@
-// A3 SWAT Baseball — Registration Logger + Email Notifier
+// A3 SWAT Baseball — Donation + Inquiry Logger / Email Notifier
 // ─────────────────────────────────────────────────────────────
-// 1. Open the Google Sheet → Extensions → Apps Script
+// 1. Open your Google Sheet → Extensions → Apps Script
 // 2. Delete everything and paste this entire file
 // 3. Click Save (floppy disk)
-// 4. If this is a brand-new project: Deploy → New deployment → Web App
+// 4. Deploy → New deployment → Web App
 //      Execute as: Me
 //      Who has access: Anyone
-//    Then copy the URL → paste into main.js line 3.
-//    If a deployment already exists (this is the live A3 SWAT script),
-//    you do NOT need a new deployment — just Deploy → Manage deployments →
-//    edit the existing deployment → set version to "New version" → Deploy,
-//    so the live /exec URL starts running this updated code.
+// 5. Click Deploy → copy the URL → paste into main.js line 3
 //
-// Spring 2026 update: registrations now write to a separate
-// "Spring 2026 Registrations" tab (auto-created on first submission),
-// keeping past-season registrations untouched. Donations/inquiries are
-// unaffected — same URL, same spreadsheet, no site changes needed.
+// Spring 2026: registration now has its own dedicated sheet + script —
+// see google-apps-script-registration-spring.js. This file still handles
+// the homepage inquiry form and the donation form; the `sheet.getActiveSheet()`
+// registration path below is legacy/unused but left in place in case the
+// old spreadsheet's historical rows are ever needed.
 
 const NOTIFY_EMAIL = 'info@a3swatbaseball.com';
 
@@ -124,14 +121,8 @@ function doGet(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
-    // ── Registration (registration form) ─────────────────────
-    // Spring 2026 registrations go to their own tab, separate from past seasons —
-    // same pattern as the Donations tab below.
-    const regSs = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = regSs.getSheetByName('Spring 2026 Registrations');
-    if (!sheet) {
-      sheet = regSs.insertSheet('Spring 2026 Registrations');
-    }
+    // ── Registration (legacy — live form no longer points here) ──
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
